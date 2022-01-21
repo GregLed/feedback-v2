@@ -8,13 +8,13 @@ import Rating from "../components/Rating";
 const SummaryPage = () => {
   const { feedback, isLoading } = useContext(FeedbackContext);
 
-  // Calculate and update average
+  // Calculate and update average rating
   const average =
     feedback.reduce((acc, cur) => {
       return acc + cur.rating;
     }, 0) / feedback.length;
 
-  // One decimal place only (no zeros)
+  // One decimal place only for page display (no zeros)
   const averageStr = average.toFixed(1).replace(/[.,]0$/, "");
 
   return isLoading ? (

@@ -35,11 +35,6 @@ a {
   height: 700px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   padding: 3rem 7rem;
-  display: none;
-}
-
-.card.active {
-  display: block;
 }
 
 .card-header {
@@ -75,10 +70,10 @@ a {
 }
 
 .halfstar-container {
+  position: relative;
   display: inline-block;
   width: 18px;
   height: 16px;
-  position: relative;
 }
 
 .halfstar,
@@ -88,6 +83,7 @@ a {
   left: 0;
   z-index: 1;
 }
+
 .halfstar {
   z-index: 2;
 }
@@ -142,11 +138,6 @@ a.btn {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
   padding: 1.5rem 3rem;
-  display: none;
-}
-
-.new-review.active {
-  display: block;
 }
 
 .new-review p {
