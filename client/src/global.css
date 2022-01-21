@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
 :root {
   --grey: #333;
@@ -13,12 +13,20 @@
 
 body {
   background-color: var(--light-grey);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   overflow: hidden;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  text-decoration: none;
 }
 
 .card {
@@ -32,10 +40,6 @@ body {
 
 .card.active {
   display: block;
-}
-
-h2 {
-  margin-bottom: 1.5rem;
 }
 
 .card-header {
@@ -92,6 +96,11 @@ h2 {
   cursor: pointer;
 }
 
+a.btn {
+  font-size: 13.333px;
+  line-height: 25px;
+}
+
 .btn:hover {
   color: #000;
   border: 1px solid #000;
@@ -131,13 +140,13 @@ h2 {
   margin: 1rem 0rem;
 }
 
-input[type='text'] {
+input[type="text"] {
   display: block;
   font-family: inherit;
   border: none;
   margin-bottom: 1.5rem;
 }
 
-input[type='text']:focus {
+input[type="text"]:focus {
   outline: none;
 }
