@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import FeedbackContext from "../context/FeedbackContext";
 import Spinner from "../components/Spinner";
+import Review from "../components/Review";
 
 const SummaryPage = () => {
   const { feedback, isLoading } = useContext(FeedbackContext);
@@ -22,7 +23,9 @@ const SummaryPage = () => {
         {!feedback || feedback.length === 0 ? (
           <p>No feedback yet</p>
         ) : (
-          feedback.map((item) => <div>{item.comment}</div>)
+          feedback.map((item) => (
+            <Review rating={item.rating} comment={item.comment} />
+          ))
         )}
       </div>
     </div>
