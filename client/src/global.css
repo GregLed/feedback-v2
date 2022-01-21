@@ -74,6 +74,24 @@ a {
   min-width: 120px;
 }
 
+.halfstar-container {
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  position: relative;
+}
+
+.halfstar,
+.backgroud-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.halfstar {
+  z-index: 2;
+}
+
 .review .comment {
   color: var(--grey);
   opacity: 0.7;

@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
+import Rating from "./Rating";
 
 const Review = ({ rating, comment }) => {
   return (
     <div className="review">
-      <div className="stars"></div>
+      <Rating value={rating} />
       <div className="comment">
         <strong>{rating}</strong>, {comment}
       </div>

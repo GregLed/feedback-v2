@@ -3,9 +3,19 @@ import { useContext } from "react";
 import FeedbackContext from "../context/FeedbackContext";
 import Spinner from "../components/Spinner";
 import Review from "../components/Review";
+import Rating from "../components/Rating";
 
 const SummaryPage = () => {
   const { feedback, isLoading } = useContext(FeedbackContext);
+
+  // Calculate and update average
+  const average =
+    feedback.reduce((acc, cur) => {
+      return acc + cur.rating;
+    }, 0) / feedback.length;
+
+  // One decimal place only (no zeros)
+  const averageStr = average.toFixed(1).replace(/[.,]0$/, "");
 
   return isLoading ? (
     <Spinner />
@@ -13,7 +23,10 @@ const SummaryPage = () => {
     <div className="card active">
       <h2>The Minimalist Entrepreneur</h2>
       <div className="card-header">
-        <div className="total-rating"></div>
+        <div className="total-rating">
+          <div className="num-rating">{averageStr}</div>
+          <Rating value={average} />
+        </div>
         <Link to="/new" className="btn">
           Add review
         </Link>
@@ -24,7 +37,11 @@ const SummaryPage = () => {
           <p>No feedback yet</p>
         ) : (
           feedback.map((item) => (
-            <Review rating={item.rating} comment={item.comment} />
+            <Review
+              key={item._id}
+              rating={item.rating}
+              comment={item.comment}
+            />
           ))
         )}
       </div>
