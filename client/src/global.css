@@ -69,15 +69,22 @@ a {
   min-width: 120px;
 }
 
+.stars > span {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 13.7px;
+}
+
 .halfstar-container {
   position: relative;
   display: inline-block;
   width: 18px;
-  height: 16px;
+  height: 14px;
 }
 
 .halfstar,
-.backgroud-star {
+.background-star {
   position: absolute;
   top: 0;
   left: 0;

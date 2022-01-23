@@ -1,41 +1,77 @@
 import PropTypes from "prop-types";
 import { FaStar, FaStarHalf } from "react-icons/fa";
 
-const Rating = ({ value, colorFilled, colorEmpty }) => {
-  const filledStar = <FaStar style={{ color: colorFilled, width: "18px" }} />;
-  const halfFilledStar = (
-    <span className="halfstar-container">
-      <FaStarHalf
-        className="halfstar"
-        style={{ color: colorFilled, width: "18px" }}
-      />
-      <FaStar
-        className="backgroud-star"
-        style={{ color: colorEmpty, width: "18px" }}
-      />
-    </span>
+const Rating = ({
+  value,
+  colorFilled,
+  colorEmpty,
+  onMouseMove,
+  onMouseLeave,
+  onClick,
+}) => {
+  const filledStar = (
+    <i style={{ color: colorFilled }} className="fas fa-star"></i>
   );
-  const emptyStar = <FaStar style={{ color: colorEmpty, width: "18px" }} />;
+  const halfFilledStar = (
+    <>
+      <i
+        style={{ color: colorFilled }}
+        className="fas fa-star-half halfstar"
+      ></i>
+      <i
+        style={{ color: colorEmpty }}
+        className="fas fa-star background-star"
+      ></i>
+    </>
+  );
+  const emptyStar = (
+    <i style={{ color: colorEmpty }} className="fas fa-star"></i>
+  );
 
   return (
     <div className="stars">
-      <span>
+      <span
+        id="1"
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      >
         {value >= 1 ? filledStar : value >= 0.5 ? halfFilledStar : emptyStar}
       </span>
 
-      <span>
+      <span
+        id="2"
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      >
         {value >= 2 ? filledStar : value >= 1.5 ? halfFilledStar : emptyStar}
       </span>
 
-      <span>
+      <span
+        id="3"
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      >
         {value >= 3 ? filledStar : value >= 2.5 ? halfFilledStar : emptyStar}
       </span>
 
-      <span>
+      <span
+        id="4"
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      >
         {value >= 4 ? filledStar : value >= 3.5 ? halfFilledStar : emptyStar}
       </span>
 
-      <span>
+      <span
+        id="5"
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      >
         {value >= 5 ? filledStar : value >= 4.5 ? halfFilledStar : emptyStar}
       </span>
     </div>
@@ -46,6 +82,7 @@ Rating.propTypes = {
   value: PropTypes.number.isRequired,
   colorFilled: PropTypes.string,
   colorEmpty: PropTypes.string,
+  onMouseMove: PropTypes.func,
 };
 
 Rating.defaultProps = {
