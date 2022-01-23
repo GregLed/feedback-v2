@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Rating from "../components/Rating";
+import FeedbackContext from "../context/FeedbackContext";
+import { useNavigate } from "react-router-dom";
 
 const NewFeedbackPage = () => {
+  const { addFeedback } = useContext(FeedbackContext);
+  const navigate = useNavigate();
+
   const [rating, setRating] = useState(null);
   const [ratingCached, setRatingCached] = useState(null);
   const [halfStar, setHalfStar] = useState(false);
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [comment, setComment] = useState("");
 
   const onMouseMove = (e) => {
     // Get position within start element
@@ -48,6 +54,11 @@ const NewFeedbackPage = () => {
     }
   };
 
+  const handleBtnClick = () => {
+    addFeedback({ rating: ratingCached, comment });
+    navigate("/");
+  };
+
   return (
     <div className="new-review">
       <h2>What's your rating?</h2>
@@ -66,8 +77,12 @@ const NewFeedbackPage = () => {
         name="comment"
         id="user-comment"
         placeholder="Start typing..."
+        value={comment}
+        onChange={(e) => {
+          setComment(e.target.value);
+        }}
       />
-      <button className="btn" id="submit-btn" disabled={btnDisabled}>
+      <button className="btn" disabled={btnDisabled} onClick={handleBtnClick}>
         Submit review
       </button>
     </div>

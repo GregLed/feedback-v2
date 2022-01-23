@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import { FaStar, FaStarHalf } from "react-icons/fa";
 
 const Rating = ({
   value,
