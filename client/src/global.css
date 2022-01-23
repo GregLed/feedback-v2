@@ -32,7 +32,7 @@ a {
 .card {
   background-color: #fff;
   width: 600px;
-  height: 700px;
+  height: 500px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
   padding: 3rem 7rem;
 }

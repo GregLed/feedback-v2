@@ -5,6 +5,7 @@ const NewFeedbackPage = () => {
   const [rating, setRating] = useState(null);
   const [ratingCached, setRatingCached] = useState(null);
   const [halfStar, setHalfStar] = useState(false);
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
   const onMouseMove = (e) => {
     // Get position within start element
@@ -40,8 +41,10 @@ const NewFeedbackPage = () => {
     if (ratingCached === rating) {
       setRating(null);
       setRatingCached(null);
+      setBtnDisabled(true);
     } else {
       setRatingCached(rating);
+      setBtnDisabled(false);
     }
   };
 
@@ -64,7 +67,7 @@ const NewFeedbackPage = () => {
         id="user-comment"
         placeholder="Start typing..."
       />
-      <button className="btn" id="submit-btn" disabled>
+      <button className="btn" id="submit-btn" disabled={btnDisabled}>
         Submit review
       </button>
     </div>
