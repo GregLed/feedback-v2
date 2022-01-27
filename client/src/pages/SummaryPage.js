@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import FeedbackContext from "../context/FeedbackContext";
 import Spinner from "../components/Spinner";
 import Review from "../components/Review";
@@ -7,6 +8,8 @@ import Rating from "../components/Rating";
 
 const SummaryPage = () => {
   const { feedback, isLoading } = useContext(FeedbackContext);
+
+  console.log(feedback);
 
   // Calculate and update average rating
   const average =
@@ -36,13 +39,25 @@ const SummaryPage = () => {
         {!feedback || feedback.length === 0 ? (
           <p>No feedback yet</p>
         ) : (
-          feedback.map((item) => (
-            <Review
-              key={item._id}
-              rating={item.rating}
-              comment={item.comment}
-            />
-          ))
+          <AnimatePresence>
+            {feedback.map((item) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.5,
+                }}
+                exit={{ opacity: 0 }}
+              >
+                <Review
+                  key={item._id}
+                  rating={item.rating}
+                  comment={item.comment}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         )}
       </div>
     </div>

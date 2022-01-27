@@ -27,11 +27,7 @@ const addReview = asyncHandler(async (req, res) => {
   });
 
   if (review) {
-    res.status(201).json({
-      _id: review._id,
-      rating: review.rating,
-      comment: review.comment,
-    });
+    res.status(201).json(review);
   } else {
     res.status(400);
     throw new Error("Invalid review data");

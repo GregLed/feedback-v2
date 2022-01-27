@@ -21,6 +21,8 @@ export const FeedbackProvider = ({ children }) => {
 
   // Add feedback
   const addFeedback = async (newFeedback) => {
+    setIsLoading(true);
+
     const response = await fetch("/api/reviews", {
       method: "POST",
       headers: {
@@ -31,7 +33,8 @@ export const FeedbackProvider = ({ children }) => {
 
     const data = await response.json();
 
-    setFeedback([data, ...feedback]);
+    setFeedback([...feedback, data]);
+    setIsLoading(false);
   };
 
   // TODO:
