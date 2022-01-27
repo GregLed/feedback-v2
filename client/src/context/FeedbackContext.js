@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import { createContext, useState, useEffect } from "react";
 
 const FeedbackContext = createContext();
@@ -6,8 +7,24 @@ export const FeedbackProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [feedback, setFeedback] = useState([]);
 
+  // Load initial data
   useEffect(() => {
     fetchFeedback();
+  }, []);
+
+  //
+  useEffect(() => {
+    const socket = io("http://localhost:5000", {
+      transports: ["websocket"],
+    });
+
+    socket.on("review-added", (newReviews) => {
+      setFeedback(newReviews);
+    });
+
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   // Fetch feedback

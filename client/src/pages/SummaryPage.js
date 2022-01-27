@@ -9,8 +9,6 @@ import Rating from "../components/Rating";
 const SummaryPage = () => {
   const { feedback, isLoading } = useContext(FeedbackContext);
 
-  console.log(feedback);
-
   // Calculate and update average rating
   const average =
     feedback.reduce((acc, cur) => {
@@ -40,9 +38,9 @@ const SummaryPage = () => {
           <p>No feedback yet</p>
         ) : (
           <AnimatePresence>
-            {feedback.map((item) => (
+            {feedback.map((item, idx) => (
               <motion.div
-                key={item.id}
+                key={idx}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{

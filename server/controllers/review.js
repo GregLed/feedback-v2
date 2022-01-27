@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Review from "../models/review.js";
+import { io } from "../server.js";
 
 // @desc    Fetch all reviews
 // @route   GET /api/reviews
@@ -27,6 +28,9 @@ const addReview = asyncHandler(async (req, res) => {
   });
 
   if (review) {
+    // Emit reviews to all users
+    const reviews = await Review.find();
+    io.emit("review-added", reviews);
     res.status(201).json(review);
   } else {
     res.status(400);
