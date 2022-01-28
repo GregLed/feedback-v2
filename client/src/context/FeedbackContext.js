@@ -11,7 +11,7 @@ export const FeedbackProvider = ({ children }) => {
   useEffect(() => {
     fetchFeedback();
 
-    const socket = io(`http://${window.location.hostname}:5000`, {
+    const socket = io(`https://${window.location.hostname}:5000`, {
       transports: ["websocket"],
     });
 
