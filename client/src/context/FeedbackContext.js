@@ -11,7 +11,10 @@ export const FeedbackProvider = ({ children }) => {
   useEffect(() => {
     fetchFeedback();
 
-    const socket = io(`https://${window.location.hostname}:5000`, {
+    // const socketUrl = `https://${window.location.hostname}:5000`;
+    const socketUrl = "/";
+
+    const socket = io(socketUrl, {
       transports: ["websocket"],
     });
 
