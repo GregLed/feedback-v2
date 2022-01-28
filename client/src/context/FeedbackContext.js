@@ -6,13 +6,12 @@ const FeedbackContext = createContext();
 export const FeedbackProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [feedback, setFeedback] = useState([]);
-  const [socket, setSocket] = useState([]);
 
   // Load initial data and connect to socketio
   useEffect(() => {
     fetchFeedback();
 
-    const socket = io("http://localhost:5000", {
+    const socket = io(`http://${window.location.hostname}:5000`, {
       transports: ["websocket"],
     });
 

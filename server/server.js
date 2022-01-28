@@ -1,3 +1,4 @@
+import path from "path";
 import dotenv from "dotenv";
 import colors from "colors";
 import express from "express";
@@ -21,26 +22,39 @@ const io = new Server(httpServer, {
   },
 });
 
-io.on("connection", (socket) => {
-  console.log("A user is connected");
+if (process.env.NODE_ENV === "development") {
+  io.on("connection", (socket) => {
+    console.log("A user is connected");
 
-  socket.on("message", (message) => {
-    console.log(`message from ${socket.id} : ${message}`);
-  });
+    socket.on("message", (message) => {
+      console.log(`message from ${socket.id} : ${message}`);
+    });
 
-  socket.on("disconnect", () => {
-    console.log(`socket ${socket.id} disconnected`);
+    socket.on("disconnect", () => {
+      console.log(`socket ${socket.id} disconnected`);
+    });
   });
-});
+}
 
 export { io };
 
 // Add middleware to parse JSON
 app.use(express.json());
+
 // Add middleware for CORS
 app.use(cors());
 
 app.use("/api/reviews", reviewRoutes);
+
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+}
 
 // Add middlewares for error handling
 app.use(notFound);
