@@ -82,10 +82,12 @@ Rating.propTypes = {
   colorFilled: PropTypes.string,
   colorEmpty: PropTypes.string,
   onMouseMove: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Rating.defaultProps = {
-  colorFilled: "#f8e825",
+  colorFilled: "#FFD700",
   colorEmpty: "#bebebe",
 };
 

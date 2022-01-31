@@ -63,26 +63,29 @@ const NewFeedbackPage = () => {
     <div className="new-review">
       <h2>What's your rating?</h2>
       <p>Rating</p>
-      <div className="stars">
-        <Rating
-          value={rating == null ? 0 : rating}
-          onMouseMove={onMouseMove}
-          onMouseLeave={onMouseLeave}
-          onClick={onClick}
-        />
-      </div>
+      <Rating
+        value={rating == null ? 0 : rating}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      />
       <label htmlFor="user-comment">Review</label>
       <input
         type="text"
         name="comment"
         id="user-comment"
-        placeholder="Start typing..."
+        placeholder="Start typing...."
         value={comment}
         onChange={(e) => {
           setComment(e.target.value);
         }}
       />
-      <button className="btn" disabled={btnDisabled} onClick={handleBtnClick}>
+      <button
+        className="btn"
+        id="submit-btn"
+        disabled={btnDisabled}
+        onClick={handleBtnClick}
+      >
         Submit review
       </button>
     </div>
